@@ -33,3 +33,13 @@
 .nav-item > a:hover {
   color: palevioletred;
 }
+
+@media (max-width: 380px) {
+  .nav-item {
+    margin: 0;
+  }
+
+  .main-nav > ul {
+    justify-content: space-around;
+  }
+}
