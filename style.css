@@ -47,10 +47,6 @@
   display: none;
 }
 
-.hamburger {
-  width: 40px;
-}
-
 @media (max-width: 420px) {
   .check {
     display: block;
@@ -63,22 +59,12 @@
     cursor: pointer;
     z-index: 2;
   }
-  .hamburger-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-  }
 
   .main-nav {
     justify-content: end;
   }
 
   .main-nav > ul {
-    display: none;
-  }
-
-  .check:checked + ul {
     position: absolute;
     top: 100%;
     left: 0;
@@ -89,7 +75,81 @@
     justify-content: space-around;
     background-color: rgb(244, 244, 244);
     box-shadow: 0px 10px 10px rgba(199, 199, 199, 0.645);
+    z-index: 3;
+    padding-bottom: 20px;
+    transform: translateX(100vw);
+    transition: all 0.5s cubic-bezier(.68,-0.55,.27,1.55);
   }
+
+  .check:checked + ul {
+    transform: translateX(0);
+  }
+
+  .backdrop {
+    display: block;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100vw;
+    height: 90vh;
+    background-color: rgb(218, 218, 218, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  
+  .check:checked ~ .backdrop {
+    visibility: visible;
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .check:checked {
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .hamburger-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+  
+  .ham-im {
+    width: 40px;
+  }
+
+  .hamburger {
+    transform: scale(1) rotate(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .close {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    transform: scale(0.05) rotate(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .check:checked ~ .hamburger-wrapper > .close {
+    transform: scale(1) rotate(180deg);
+  }
+
+  .check:checked ~ .hamburger-wrapper > .hamburger {
+    transform: scale(0.05) rotate(180deg);
+  }
+
 }
 
 
